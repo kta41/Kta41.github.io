@@ -21,7 +21,10 @@ tags:
 <div style="text-align: justify;">
 Codify es una máquina Linux que ejecuta un servidor HTTP y aloja una aplicación web desactualizada. Aprovecharemos las vulnerabilidades en esta aplicación para acceder al sistema, donde descubriremos credenciales encriptadas en formato bcrypt. Estas credenciales pueden ser explotadas de manera sencilla utilizando John The Ripper. Una vez que hayamos obtenido acceso al usuario Joshua, investigaremos cómo vulnerar un código en bash que cuenta con permisos sudo pero no está implementado con todas las medidas de seguridad necesarias. Esto nos permitirá elevar nuestros privilegios al nivel de root.
 </div>
-<br>
+<br><br>
+
+
+
 # Reconocimiento
 
 ## Puertos
