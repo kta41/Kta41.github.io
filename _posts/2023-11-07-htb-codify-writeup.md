@@ -33,8 +33,11 @@ Realizamos un escaneo rápido de puertos y versiones de servicios a la máquina 
 ```
 
 ![](/assets/images/HTB-writeup-codify/Pasted image 20231107175436.png)
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> f6b014c07e068104233fe7bab9e18ffa9b6873d6
 ## Web
 
 El puerto 80 tiene un servidor http activo: 
@@ -50,8 +53,11 @@ El servidor contiene una aplicación web que permite testear código Node JS. Un
 La aplicación funciona mediante la libreria vm2 en la versión 3.9.16. 
 
 ![](/assets/images/HTB-writeup-codify/Pasted image 20231107180126.png)
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> f6b014c07e068104233fe7bab9e18ffa9b6873d6
 # Penetración 
 
 ## Web
