@@ -151,9 +151,12 @@ Parece ser que podemos ejecutar un comando con permisos sudo que pregunta por la
 
 ![](/assets/images/HTB-writeup-codify/Pasted image 20231107183231.png)
 
-Está programado con ciertas vulnerabilidades de seguridad. Al no estar las variables entre comillas, nos permite realizar que se lean como comandos y no sólo como variables.
+Está programado con ciertas vulnerabilidades de seguridad. Como la comparación if viene en doble corchete, el programa leerá por igual `[[$DB_PASS == Pass]]` que `[[$DB_PASS == P*]]`
 
-El camino fácil es construir un script en python que automatice el trabajo de fuerza bruta. 
+Esto nos permite adivinar la contraseña mediante fuerza bruta, testando cada dígito 1 a 1.  Probando `[[$DB_PASS == a*]]` `[[$DB_PASS == b*]]`...
+
+
+El camino fácil es construir un script en python que lo automatice. 
 
 ```python
 import string  
