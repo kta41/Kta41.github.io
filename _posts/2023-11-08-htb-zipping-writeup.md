@@ -17,9 +17,9 @@ tags:
 
 
 
-<h1>Resumen || </h1><br>
+<h1>Resumen</h1><br>
 <div style="text-align: justify;">
-Tengo constancia de que antes esta máquina se resolvía por otro método más interesante. Este trataba de generar un `.pdf` malicioso que fuera leído por la aplicación web como un pdf, pero como un php por el servidor. Hack The Box la actualizó y, hasta ahora, no he sabido replicar esa vulnerabilidad. 
+Tengo constancia de que antes esta máquina se resolvía por otro método más interesante. Este trataba de generar un .pdf malicioso que fuera leído por la aplicación web como un pdf, pero como un php por el servidor. Hack The Box la actualizó y, hasta ahora, no he sabido replicar esa vulnerabilidad. 
 
 Aquí muestro la solución a noviembre de 2023:
 </div>
@@ -35,13 +35,17 @@ nmap -sV 10.10.11.229 -n -oN scan.txt -T5 -vvv
 ```
 
 ![](/assets/images/HTB-writeup-zipping/Pasted image 20231108144349.png)
+
 Tenemos un servidor http en el puerto 80. 
+
 ## Web
 
 Tras revisar la web en profundidad, encontramos que funciona con .php: 
 
 
 ![](/assets/images/HTB-writeup-zipping/Pasted image 20231108144743.png)
+
+
 
 # Penetración
 
