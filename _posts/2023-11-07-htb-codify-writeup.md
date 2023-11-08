@@ -1,6 +1,6 @@
 ---
 layout: single
-title: HTB codify writeup
+title: HTB Codify writeup
 date: 2023-11-07
 classes: wide
 categories:
