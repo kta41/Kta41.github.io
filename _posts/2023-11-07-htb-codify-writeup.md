@@ -151,10 +151,7 @@ Parece ser que podemos ejecutar un comando con permisos sudo que pregunta por la
 
 ![](/assets/images/HTB-writeup-codify/Pasted image 20231107183231.png)
 
-Está programado con ciertas vulnerabilidades de seguridad. Como la comparación if viene en doble corchete, el programa leerá por igual `[[$DB_PASS == Pass]]` que `[[$DB_PASS == P*]]`
-
-Esto nos permite adivinar la contraseña mediante fuerza bruta, testando cada dígito 1 a 1.  Probando `[[$DB_PASS == a*]]` `[[$DB_PASS == b*]]`...
-La teoría detrás de esto se puede leer [aquí](https://www.baeldung.com/linux/bash-single-vs-double-brackets#4-pattern-matching).
+Está programado con ciertas vulnerabilidades de seguridad. Como la comparación if viene en doble corchete, el programa leerá por igual `[[$DB_PASS == Pass]]` que `[[$DB_PASS == P*]]`. Esto nos permite adivinar la contraseña mediante fuerza bruta, testando cada dígito 1 a 1.  Probando `[[$DB_PASS == a*]]` `[[$DB_PASS == b*]]`... La teoría detrás de esto se puede leer [aquí](https://www.baeldung.com/linux/bash-single-vs-double-brackets#4-pattern-matching).
 
 
 El camino fácil es construir un script en python que lo automatice. 
