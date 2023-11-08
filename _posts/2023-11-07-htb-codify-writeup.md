@@ -33,11 +33,8 @@ Realizamos un escaneo rápido de puertos y versiones de servicios a la máquina 
 ```
 
 ![](/assets/images/HTB-writeup-codify/Pasted image 20231107175436.png)
-<<<<<<< HEAD
 
 
-=======
->>>>>>> f6b014c07e068104233fe7bab9e18ffa9b6873d6
 ## Web
 
 El puerto 80 tiene un servidor http activo: 
