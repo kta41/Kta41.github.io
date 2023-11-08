@@ -1,3 +1,19 @@
+---
+layout: single
+title: HTB Codify Writeup
+date: 2023-11-07
+classes: wide
+# header:
+categories:
+  - writeups
+tags:
+  - HTB
+  - writeup
+  - pentesting
+---
+
+
+
 
 # Resumen
 
