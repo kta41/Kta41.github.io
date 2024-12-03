@@ -24,9 +24,9 @@ My name is Tomás Vinuesa (aka Kta41), a cybersecurity specialist with experienc
 
 <h2 style="margin:10px 190px 0px"> Technical Skills: </h2>
 - Profound knowledge of programming languages: Python,<br>
-  Bash, and C# for developing exploits and customized tools.
-- Advanced Threat Analysis: Ability to investigate and track malicious campaigns, leveraging frameworks<br> such as MITRE ATT&CK and OSINT tools.
-- Incident Response and Digital Forensics: Experience in detecting, containing, and remediating cyber incidents<br> with tools like Splunk, Wireshark, and FTK Imager.
-- Vulnerability Management: Nessus, Qualys, OpenVAS.
-- Specialization in social engineering attacks and evasion techniques.
-- Evaluation and improvement of web application security and embedded systems.
+  Bash, and C# for developing exploits and customized tools.<br>
+- Advanced Threat Analysis: Ability to investigate and track malicious campaigns, leveraging frameworks<br> such as MITRE ATT&CK and OSINT tools.<br>
+- Incident Response and Digital Forensics: Experience in detecting, containing, and remediating cyber incidents<br> with tools like Splunk, Wireshark, and FTK Imager.<br>
+- Vulnerability Management: Nessus, Qualys, OpenVAS.<br>
+- Specialization in social engineering attacks and evasion techniques.<br>
+- Evaluation and improvement of web application security and embedded systems.<br>
