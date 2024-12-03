@@ -1,25 +1,32 @@
 ---
 title: "About"
 permalink: /about/
-date: 2019-02-15
+date: 2024-12-03
 author_profile: true
 
 ---
 <br><br><br>
 <p style="margin:10px 30px 0px">
-Mi nombre es Tomás Vinuesa (aka Kta41), actualmente estoy preparando diversas certificaciones de Hacking Ético
-con el apoyo del Bootcamp en ciberseguridad ofrecido por The Bridge. </p>
+My name is Tomás Vinuesa (aka Kta41), a cybersecurity specialist with experience in identifying, analyzing, and mitigating cyber threats.</p>
 
-<h2 style="margin:10px 190px 0px"> Titulaciones hasta la fecha: </h2>
+<h2 style="margin:10px 190px 0px"> Certifications to Date: </h2>
 
-- *Cursando Grado en Matemáticas* por la Universidad Nacional de Educación a Distancia.
-- *Graduado en Filosofía* por la Universidad Complutense de Madrid. 
-- *Graduado en Ciencias Políticas* por la Universidad Complutense de Madrid. 
+- *CCST Cisco* 
+- *PCAP with Python Institute*
+- *Penetration Tester Path with HTB*
 
-<h2 style="margin:10px 190px 0px"> Habilidades Técnicas: </h2>
-- Profundo conocimiento de lenguajes de programación: Python,<br>
-  Bash y C# para desarrollar exploits y herramientas personalizadas.
-- Experiencia avanzada en la manipulación de sistemas y redes.
-- Especialización en ataques de ingeniería social y técnicas de evasión.
-- Evaluación y mejora de la seguridad de aplicaciones web y sistemas embebidos.
+<h2 style="margin:10px 190px 0px"> Degrees to Date: </h2>
 
+- *Pursuing Expertise in Cyber Threat Intelligence (CTI)* with Immune Institute.
+- *Bootcamp in Offensive Cybersecurity* with The Bridge.
+- *Bachelor’s Degree in Philosophy* from Complutense University of Madrid.
+- *Bachelor’s Degree in Political Science* from Complutense University of Madrid.
+
+<h2 style="margin:10px 190px 0px"> Technical Skills: </h2>
+- Profound knowledge of programming languages: Python,<br>
+  Bash, and C# for developing exploits and customized tools.
+- Advanced Threat Analysis: Ability to investigate and track malicious campaigns, leveraging frameworks<br> such as MITRE ATT&CK and OSINT tools.
+- Incident Response and Digital Forensics: Experience in detecting, containing, and remediating cyber incidents<br> with tools like Splunk, Wireshark, and FTK Imager.
+- Vulnerability Management: Nessus, Qualys, OpenVAS.
+- Specialization in social engineering attacks and evasion techniques.
+- Evaluation and improvement of web application security and embedded systems.
