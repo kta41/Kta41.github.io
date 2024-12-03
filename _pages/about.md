@@ -8,9 +8,9 @@ author_profile: true
 <br><br><br>
 <p style="margin:10px 30px 0px">
 My name is Tomás Vinuesa (aka Kta41), a cybersecurity specialist with experience in identifying, analyzing, and mitigating cyber threats.</p>
+<br>
 
 <h2 style="margin:10px 190px 0px"> Certifications to Date: </h2>
-
 - *CCST Cisco* 
 - *PCAP with Python Institute*
 - *Penetration Tester Path with HTB*
