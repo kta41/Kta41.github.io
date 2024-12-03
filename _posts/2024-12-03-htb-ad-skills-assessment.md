@@ -1,6 +1,6 @@
 ---
 layout: single
-title: HTB Academy Active Directory Skills ASsessment Part II
+title: HTB Academy Active Directory Skills Assessment Part II
 date: 2024-12-03
 classes: wide
 categories:
